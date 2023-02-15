@@ -1,0 +1,58 @@
+name: Applications
+testcases:
+- name: ApplicationCRUD
+  steps:
+  # Create the application
+  - name: Create an application 
+    type: hub-api
+    path: applications
+    method: POST
+    body: >-  # Embeding JSON file is also supported with "bodyFile: application.json"
+      {
+        "name": "tackle-testapp",
+        "identities": [],
+        "repository": {
+          "kind": "git",
+          "url": "https://github.com/konveyor/tackle-testapp"
+        }
+      }
+    assertions:
+    - result.data ShouldNotBeEmpty
+    - result.datajson.name ShouldEqual tackle-testapp
+    vars:
+      app_id:
+        from: result.datajson.id
+        default: 0
+    info:
+    - "Got app_id {{.app_id}}"
+
+  # Retrieve the application
+  - name: Get the application
+    type: hub-api
+    path: applications/{{.ApplicationCRUD.app_id}}
+    assertions:
+    - result.data ShouldNotBeEmpty
+    - result.datajson.name ShouldEqual tackle-testapp
+
+  # Modify the application
+  - name: Update the application
+    type: hub-api
+    path: applications/{{.ApplicationCRUD.app_id}}
+    method: PUT
+    body: '{"name": "tackle-testapp-updated"}'
+    assertions:
+    - result.data ShouldBeEmpty # Hub API returns Empty data for app update
+
+  # Retrieve the modified application
+  - name: Get the updated application
+    type: hub-api
+    path: applications/{{.ApplicationCRUD.app_id}}
+    assertions:
+    - result.data ShouldNotBeEmpty
+    - result.datajson.name ShouldEqual tackle-testapp-updated
+
+  # Delete the application
+  - name: Cleanup the application
+    type: hub-api
+    path: applications/{{.ApplicationCRUD.app_id}}
+    method: DELETE

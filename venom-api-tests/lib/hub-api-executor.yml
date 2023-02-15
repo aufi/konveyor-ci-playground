@@ -1,0 +1,22 @@
+---
+executor: hub-api
+input:
+  path: {}
+  method: GET
+  body: {}
+  bodyFile: {}
+steps:
+- type: http
+  method: "{{.input.method}}"
+  url: "{{.url}}/hub/{{.input.path}}"
+  headers:
+    Content-Type: application/json
+  body: '{{.input.body}}' # single quotes matter here to allow multiline JSON format
+  bodyFile: "{{.input.bodyFile}}"
+  assertions:
+  - result.statuscode ShouldBeBetweenOrEqual 200 299 
+  info:
+    - 'Querying {{.input.method}} {{.input.path}} with body: {{.input.body}}'
+    - "Got response {{.result.statuscode}}: {{.result.body}}"
+output:
+  data: "{{.result.body}}"  # json suffix doesn't matter here, needs to be used directly where the data var is read
