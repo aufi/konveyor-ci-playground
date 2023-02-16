@@ -2,9 +2,13 @@ name: Applications
 testcases:
 - name: ApplicationCRUD
   steps:
+  # Login to Hub (create auth token for next steps)
+  #- name: Login to Hub
+  #  type: hub-login # fields "user" and "password" are optional, gets admin by default
+
   # Create the application
-  - name: Create an application 
-    type: hub-api
+  - name: Create an application # "name" is optional, but can help for readability
+    type: hub-api # type specifies an executor, that performs the action that is tested, "hub-api" wraps generic http executor
     path: applications
     method: POST
     body: >-  # Embeding JSON file is also supported with "bodyFile: application.json"
@@ -17,22 +21,20 @@ testcases:
         }
       }
     assertions:
-    - result.data ShouldNotBeEmpty
-    - result.datajson.name ShouldEqual tackle-testapp
+    - result.statuscode ShouldEqual 201
+    - result.bodyjson.name ShouldEqual tackle-testapp # "result.bodyjson" is a JSON-parsed response from API having the same attributes as an Application in this case
     vars:
       app_id:
-        from: result.datajson.id
+        from: result.bodyjson.id  # extract application ID for next steps (like retrieve, update and delete)
         default: 0
-    info:
-    - "Got app_id {{.app_id}}"
 
   # Retrieve the application
   - name: Get the application
     type: hub-api
     path: applications/{{.ApplicationCRUD.app_id}}
     assertions:
-    - result.data ShouldNotBeEmpty
-    - result.datajson.name ShouldEqual tackle-testapp
+    - result.statuscode ShouldEqual 200
+    - result.bodyjson.name ShouldEqual tackle-testapp
 
   # Modify the application
   - name: Update the application
@@ -41,18 +43,29 @@ testcases:
     method: PUT
     body: '{"name": "tackle-testapp-updated"}'
     assertions:
-    - result.data ShouldBeEmpty # Hub API returns Empty data for app update
+    - result.statuscode ShouldEqual 204
+    - result.body ShouldBeEmpty # Hub API returns Empty body for app update
 
   # Retrieve the modified application
   - name: Get the updated application
     type: hub-api
     path: applications/{{.ApplicationCRUD.app_id}}
     assertions:
-    - result.data ShouldNotBeEmpty
-    - result.datajson.name ShouldEqual tackle-testapp-updated
+    - result.statuscode ShouldEqual 200
+    - result.bodyjson.name ShouldEqual tackle-testapp-updated
 
   # Delete the application
   - name: Cleanup the application
     type: hub-api
     path: applications/{{.ApplicationCRUD.app_id}}
     method: DELETE
+    assertions:
+    - result.statuscode ShouldEqual 204
+
+  # Check the application is really gone
+  - name: Get the deleted application
+    type: hub-api
+    path: applications/{{.ApplicationCRUD.app_id}}
+    assertions:
+    - result.statuscode ShouldEqual 404
+    - result.bodyjson.error ShouldEqual "record not found"

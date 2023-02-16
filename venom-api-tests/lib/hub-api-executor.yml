@@ -8,15 +8,16 @@ input:
 steps:
 - type: http
   method: "{{.input.method}}"
-  url: "{{.url}}/hub/{{.input.path}}"
+  url: "{{.url}}/hub/{{.input.path}}" # "url" is a global variable form config venomrc, other "input.*" comes from the step that called this executor
   headers:
     Content-Type: application/json
   body: '{{.input.body}}' # single quotes matter here to allow multiline JSON format
   bodyFile: "{{.input.bodyFile}}"
   assertions:
-  - result.statuscode ShouldBeBetweenOrEqual 200 299 
+  - result.statuscode ShouldBeBetweenOrEqual 100 599  # allow all status code here, check in superior step (omitting this section would mean 200 by default)
   info:
     - 'Querying {{.input.method}} {{.input.path}} with body: {{.input.body}}'
     - "Got response {{.result.statuscode}}: {{.result.body}}"
 output:
-  data: "{{.result.body}}"  # json suffix doesn't matter here, needs to be used directly where the data var is read
+  statuscode: "{{.result.statuscode}}"
+  body: "{{.result.body}}"  # json suffix doesn't matter here, needs to be used directly where the data var is read
