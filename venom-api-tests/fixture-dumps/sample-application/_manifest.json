@@ -1,0 +1,18 @@
+{
+    "timestamp_utc": "2023-02-17T16:45:07.260422",
+    "command_options": {
+        "action": [
+            "export"
+        ],
+        "config": "/home/maufart/projects/konveyor-ci-playground/venom-api-tests//vendor/tackle-config.yml",
+        "data_dir": "/home/maufart/projects/konveyor-ci-playground/venom-api-tests//fixture-dumps/sample-application",
+        "verbose": false,
+        "skipDestCheck": false,
+        "disableSslWarnings": false,
+        "ignoreImportErrors": false,
+        "noAuth": true,
+        "skipBuckets": false
+    },
+    "known_string": "tackle-cli-known-string-plaintext",
+    "crypted_known_string": "1XwmjIMcvVGHGsQSBdN24YSoAwuFn+fBwZhOCUW2GpV5djgeeYXSet6mtVYcj8gNzA=="
+}

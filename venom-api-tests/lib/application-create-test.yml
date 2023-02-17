@@ -1,0 +1,24 @@
+executor: application-create-test
+input:
+  input: {}
+  value: {}
+  shouldError: {}
+  expectedStatus: {}
+steps:
+  # Create the application iterating the applications variable defined above
+  - type: hub-api
+    path: applications
+    method: POST
+    body: '{{.value.input}}'
+    assertions:
+    - result.statuscode ShouldEqual "{{.value.expectedStatus}}"
+#    - result.bodyjson.name ShouldEqual tackle-testapp # "result.bodyjson" is a JSON-parsed response from API having the same attributes as an Application in this case
+
+  # Retrieve the application
+#  - name: Get the application
+#    type: hub-api
+#    path: applications/{{.ApplicationCRUD.app_id}}
+#    assertions:
+#    - result.statuscode ShouldEqual 200
+#    - result.bodyjson.name ShouldEqual tackle-testapp
+#

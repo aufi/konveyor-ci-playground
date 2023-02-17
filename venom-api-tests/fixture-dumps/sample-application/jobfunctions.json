@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "createUser": "",
+        "updateUser": "",
+        "name": "Business Analyst",
+        "stakeholders": null
+    },
+    {
+        "id": 2,
+        "createUser": "",
+        "updateUser": "",
+        "name": "Business Service Owner / Manager",
+        "stakeholders": null
+    },
+    {
+        "id": 3,
+        "createUser": "",
+        "updateUser": "",
+        "name": "Consultant",
+        "stakeholders": null
+    },
+    {
+        "id": 4,
+        "createUser": "",
+        "updateUser": "",
+        "name": "DBA",
+        "stakeholders": null
+    },
+    {
+        "id": 5,
+        "createUser": "",
+        "updateUser": "",
+        "name": "Developer / Software Engineer",
+        "stakeholders": null
+    },
+    {
+        "id": 6,
+        "createUser": "",
+        "updateUser": "",
+        "name": "IT Operations",
+        "stakeholders": null
+    },
+    {
+        "id": 7,
+        "createUser": "",
+        "updateUser": "",
+        "name": "Program Manager",
+        "stakeholders": null
+    },
+    {
+        "id": 8,
+        "createUser": "",
+        "updateUser": "",
+        "name": "Project Manager",
+        "stakeholders": null
+    },
+    {
+        "id": 9,
+        "createUser": "",
+        "updateUser": "",
+        "name": "Service Owner",
+        "stakeholders": null
+    },
+    {
+        "id": 10,
+        "createUser": "",
+        "updateUser": "",
+        "name": "Solution Architect",
+        "stakeholders": null
+    },
+    {
+        "id": 11,
+        "createUser": "",
+        "updateUser": "",
+        "name": "System Administration",
+        "stakeholders": null
+    },
+    {
+        "id": 12,
+        "createUser": "",
+        "updateUser": "",
+        "name": "Test Analyst / Manager",
+        "stakeholders": null
+    }
+]

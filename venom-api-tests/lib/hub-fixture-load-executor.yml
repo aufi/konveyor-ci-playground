@@ -1,0 +1,23 @@
+executor: hub-fixture-load
+input:
+  title: {}
+steps:
+- type: exec
+  script: |-
+    # Crazy getting root dir to find path to vendor independent on the test file path
+    wd={{.venom.testsuite.workdir}}
+    fp={{.venom.testsuite.filepath | dirname }}
+    TEST_ROOT=${wd%"$fp"}
+    DATA_DIR=${TEST_ROOT}fixture-dumps/{{.input.title}}
+    echo "$DATA_DIR"
+
+    # Check datadir exists
+    [ ! -d "$DATA_DIR" ] && echo "Data directory for fixture does not exist." && exit 1
+
+    # Clean Hub
+    ${TEST_ROOT}/vendor/tackle clean-all -n -c ${TEST_ROOT}/vendor/tackle-config.yml
+
+    # Import the dump
+    ${TEST_ROOT}/vendor/tackle import -n -d ${DATA_DIR} -c ${TEST_ROOT}/vendor/tackle-config.yml
+  info:
+  - "Command finished with {{.result.code}} STD: {{.result.systemout}}, ERR: {{.result.systemerr}}."

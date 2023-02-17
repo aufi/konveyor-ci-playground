@@ -1,0 +1,364 @@
+[
+    {
+        "id": 1,
+        "name": "Application Type",
+        "colour": "#ec7a08",
+        "rank": 6,
+        "username": "",
+        "tags": [
+            {
+                "id": 1,
+                "name": "COTS",
+                "tagType": {
+                    "id": 1,
+                    "name": "Application Type",
+                    "colour": "#ec7a08",
+                    "rank": 6,
+                    "username": ""
+                }
+            },
+            {
+                "id": 2,
+                "name": "In house",
+                "tagType": {
+                    "id": 1,
+                    "name": "Application Type",
+                    "colour": "#ec7a08",
+                    "rank": 6,
+                    "username": ""
+                }
+            },
+            {
+                "id": 3,
+                "name": "SaaS",
+                "tagType": {
+                    "id": 1,
+                    "name": "Application Type",
+                    "colour": "#ec7a08",
+                    "rank": 6,
+                    "username": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Data Center",
+        "colour": "#2b9af3",
+        "rank": 5,
+        "username": "",
+        "tags": [
+            {
+                "id": 4,
+                "name": "Boston (USA)",
+                "tagType": {
+                    "id": 2,
+                    "name": "Data Center",
+                    "colour": "#2b9af3",
+                    "rank": 5,
+                    "username": ""
+                }
+            },
+            {
+                "id": 5,
+                "name": "London (UK)",
+                "tagType": {
+                    "id": 2,
+                    "name": "Data Center",
+                    "colour": "#2b9af3",
+                    "rank": 5,
+                    "username": ""
+                }
+            },
+            {
+                "id": 6,
+                "name": "Paris (FR)",
+                "tagType": {
+                    "id": 2,
+                    "name": "Data Center",
+                    "colour": "#2b9af3",
+                    "rank": 5,
+                    "username": ""
+                }
+            },
+            {
+                "id": 7,
+                "name": "Sydney (AU)",
+                "tagType": {
+                    "id": 2,
+                    "name": "Data Center",
+                    "colour": "#2b9af3",
+                    "rank": 5,
+                    "username": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Database",
+        "colour": "#6ec664",
+        "rank": 4,
+        "username": "",
+        "tags": [
+            {
+                "id": 8,
+                "name": "DB2",
+                "tagType": {
+                    "id": 3,
+                    "name": "Database",
+                    "colour": "#6ec664",
+                    "rank": 4,
+                    "username": ""
+                }
+            },
+            {
+                "id": 9,
+                "name": "MongoDB",
+                "tagType": {
+                    "id": 3,
+                    "name": "Database",
+                    "colour": "#6ec664",
+                    "rank": 4,
+                    "username": ""
+                }
+            },
+            {
+                "id": 10,
+                "name": "Oracle",
+                "tagType": {
+                    "id": 3,
+                    "name": "Database",
+                    "colour": "#6ec664",
+                    "rank": 4,
+                    "username": ""
+                }
+            },
+            {
+                "id": 11,
+                "name": "PostgreSQL",
+                "tagType": {
+                    "id": 3,
+                    "name": "Database",
+                    "colour": "#6ec664",
+                    "rank": 4,
+                    "username": ""
+                }
+            },
+            {
+                "id": 12,
+                "name": "SQL Server",
+                "tagType": {
+                    "id": 3,
+                    "name": "Database",
+                    "colour": "#6ec664",
+                    "rank": 4,
+                    "username": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Language",
+        "colour": "#009596",
+        "rank": 1,
+        "username": "",
+        "tags": [
+            {
+                "id": 13,
+                "name": "C# ASP .Net",
+                "tagType": {
+                    "id": 4,
+                    "name": "Language",
+                    "colour": "#009596",
+                    "rank": 1,
+                    "username": ""
+                }
+            },
+            {
+                "id": 14,
+                "name": "C++",
+                "tagType": {
+                    "id": 4,
+                    "name": "Language",
+                    "colour": "#009596",
+                    "rank": 1,
+                    "username": ""
+                }
+            },
+            {
+                "id": 15,
+                "name": "COBOL",
+                "tagType": {
+                    "id": 4,
+                    "name": "Language",
+                    "colour": "#009596",
+                    "rank": 1,
+                    "username": ""
+                }
+            },
+            {
+                "id": 16,
+                "name": "Java",
+                "tagType": {
+                    "id": 4,
+                    "name": "Language",
+                    "colour": "#009596",
+                    "rank": 1,
+                    "username": ""
+                }
+            },
+            {
+                "id": 17,
+                "name": "Javascript",
+                "tagType": {
+                    "id": 4,
+                    "name": "Language",
+                    "colour": "#009596",
+                    "rank": 1,
+                    "username": ""
+                }
+            },
+            {
+                "id": 18,
+                "name": "Python",
+                "tagType": {
+                    "id": 4,
+                    "name": "Language",
+                    "colour": "#009596",
+                    "rank": 1,
+                    "username": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Operating System",
+        "colour": "#a18fff",
+        "rank": 2,
+        "username": "",
+        "tags": [
+            {
+                "id": 19,
+                "name": "RHEL 8",
+                "tagType": {
+                    "id": 5,
+                    "name": "Operating System",
+                    "colour": "#a18fff",
+                    "rank": 2,
+                    "username": ""
+                }
+            },
+            {
+                "id": 20,
+                "name": "Windows Server 2016",
+                "tagType": {
+                    "id": 5,
+                    "name": "Operating System",
+                    "colour": "#a18fff",
+                    "rank": 2,
+                    "username": ""
+                }
+            },
+            {
+                "id": 21,
+                "name": "Z/OS",
+                "tagType": {
+                    "id": 5,
+                    "name": "Operating System",
+                    "colour": "#a18fff",
+                    "rank": 2,
+                    "username": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Runtime",
+        "colour": "#7d1007",
+        "rank": 3,
+        "username": "",
+        "tags": [
+            {
+                "id": 22,
+                "name": "EAP",
+                "tagType": {
+                    "id": 6,
+                    "name": "Runtime",
+                    "colour": "#7d1007",
+                    "rank": 3,
+                    "username": ""
+                }
+            },
+            {
+                "id": 23,
+                "name": "JWS",
+                "tagType": {
+                    "id": 6,
+                    "name": "Runtime",
+                    "colour": "#7d1007",
+                    "rank": 3,
+                    "username": ""
+                }
+            },
+            {
+                "id": 24,
+                "name": "Quarkus",
+                "tagType": {
+                    "id": 6,
+                    "name": "Runtime",
+                    "colour": "#7d1007",
+                    "rank": 3,
+                    "username": ""
+                }
+            },
+            {
+                "id": 25,
+                "name": "Spring Boot",
+                "tagType": {
+                    "id": 6,
+                    "name": "Runtime",
+                    "colour": "#7d1007",
+                    "rank": 3,
+                    "username": ""
+                }
+            },
+            {
+                "id": 26,
+                "name": "Tomcat",
+                "tagType": {
+                    "id": 6,
+                    "name": "Runtime",
+                    "colour": "#7d1007",
+                    "rank": 3,
+                    "username": ""
+                }
+            },
+            {
+                "id": 27,
+                "name": "WebLogic",
+                "tagType": {
+                    "id": 6,
+                    "name": "Runtime",
+                    "colour": "#7d1007",
+                    "rank": 3,
+                    "username": ""
+                }
+            },
+            {
+                "id": 28,
+                "name": "WebSphere",
+                "tagType": {
+                    "id": 6,
+                    "name": "Runtime",
+                    "colour": "#7d1007",
+                    "rank": 3,
+                    "username": ""
+                }
+            }
+        ]
+    }
+]

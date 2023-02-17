@@ -1,0 +1,22 @@
+executor: hub-fixture-store
+input:
+  title: {}
+steps:
+- type: exec
+  script: |-
+    # Crazy getting root dir to find path to vendor independent on the test file path
+    wd={{.venom.testsuite.workdir}}
+    fp={{.venom.testsuite.filepath | dirname }}
+    TEST_ROOT=${wd%"$fp"}
+
+    # Prepare dump directory
+    DATA_DIR=${TEST_ROOT}/fixture-dumps/{{.input.title}}
+    mkdir -p ${DATA_DIR}
+
+    # Create the dump
+    ${TEST_ROOT}/vendor/tackle export -n -d ${DATA_DIR} -c ${TEST_ROOT}/vendor/tackle-config.yml
+
+    # Clean empty or [] dump files
+    find ${DATA_DIR} -type f -size -4c -delete
+  info:
+  - "Command finished with {{.result.code}} STD: {{.result.systemout}}, ERR: {{.result.systemerr}}."

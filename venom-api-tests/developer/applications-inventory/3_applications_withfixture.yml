@@ -1,0 +1,29 @@
+name: ApplicationsWithFixture
+testcases:
+- name: ApplicationFromDump
+  steps:
+  #- name: Store ~original dump of hub data
+  #  type: hub-fixture-store
+  #  title: clean
+
+  # Execute test
+  - name: Create sample application
+    type: hub-api
+    path: applications
+    method: POST
+    body: {
+      "name": "tackle-testapp",
+      "identities": [],
+      "repository": {
+        "kind": "git",
+        "url": "https://github.com/konveyor/tackle-testapp"
+      }
+    }
+
+  #- name: Store Tackle objects as a test fixture
+  #  type: hub-fixture-store
+  #  title: sample-application
+
+  - name: Load fixture
+    type: hub-fixture-load
+    title: clean
