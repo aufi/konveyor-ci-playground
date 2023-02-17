@@ -1,4 +1,4 @@
-name: Applications
+name: ApplicationsTest1
 testcases:
 - name: ApplicationCRUD
   steps:
@@ -26,7 +26,6 @@ testcases:
     vars:
       app_id:
         from: result.bodyjson.id  # extract application ID for next steps (like retrieve, update and delete)
-        default: 0
 
   # Retrieve the application
   - name: Get the application

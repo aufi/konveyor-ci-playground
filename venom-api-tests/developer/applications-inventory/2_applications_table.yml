@@ -1,0 +1,58 @@
+name: ApplicationsTestTable
+vars:
+  applications:
+  - input: >- # Valid application,    Note: >- block must not end with comment and the intendation of comments matters!
+      {
+        "name": "tackle-testapp",
+        "identities": [],
+        "repository": {
+          "kind": "git",
+          "url": "https://github.com/konveyor/tackle-testapp"
+        }
+      }
+    expectedStatus: 201
+    #    expectedError: null
+
+  - input: >- # Invalid - duplicate name (not existing repository kind doesn't fail)
+      {
+        "name": "tackle-testapp",
+        "identities": [],
+        "repository": {
+          "kind": "nonexistscm",
+          "url": "https://nongit.local"
+        }
+      }
+    expectedStatus: 409
+    #    expectedError: "UNIQUE constraint failed: Application.Name"
+
+  - input: >- # Invalid - empty name
+      {
+        "name": ""
+      }
+    expectedStatus: 400
+    #    expectedError: Field validation for \'Name\' failed on the \'required\' tag
+
+testcases:
+- name: ApplicationsCreate  # Note: all this could be moved to reusable executor looping over multiple steps
+  steps:
+  # Create the application iterating the applications variable defined above ("range" field)
+  - name: Bulk create application
+    type: hub-api
+    path: applications
+    method: POST
+    range: '{{.applications}}'
+    body: '{{.value.input}}'
+    assertions:
+    - result.statuscode ShouldEqual "{{.value.expectedStatus}}"
+    #    - result.bodyjson.error ShouldEqual '{{.value.expectedError}}'
+    vars:
+      app_id:
+        from: result.bodyjson.id
+
+  # Delete the application (not loop actually)
+  - name: Cleanup the application
+    type: hub-api
+    path: applications/{{.ApplicationsCreate.app_id}} # Only one app is successfuly created so add_id set from the first one persists
+    method: DELETE
+    assertions:
+    - result.statuscode ShouldEqual 204

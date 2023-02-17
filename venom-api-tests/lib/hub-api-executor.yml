@@ -1,4 +1,3 @@
----
 executor: hub-api
 input:
   path: {}
@@ -11,6 +10,7 @@ steps:
   url: "{{.url}}/hub/{{.input.path}}" # "url" is a global variable form config venomrc, other "input.*" comes from the step that called this executor
   headers:
     Content-Type: application/json
+  #  Authorization: "Bearer {{.auth_token}}"
   body: '{{.input.body}}' # single quotes matter here to allow multiline JSON format
   bodyFile: "{{.input.bodyFile}}"
   assertions:
@@ -21,3 +21,4 @@ steps:
 output:
   statuscode: "{{.result.statuscode}}"
   body: "{{.result.body}}"  # json suffix doesn't matter here, needs to be used directly where the data var is read
+  httpresult: "{{.result}}"
