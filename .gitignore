@@ -1,2 +1,3 @@
-output/
-venom.log
+venom-api-tests/output/
+venom*.log
+venom-api-tests/vendor

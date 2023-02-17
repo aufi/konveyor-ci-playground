@@ -1,6 +1,32 @@
 # konveyor-ci-playground
 Playground for upstream CI experiments to understand it as much as possible before building it.
 
+## Test suite execution
+
+### Clone this repo
+
+```
+git clone https://github.com/aufi/konveyor-ci-playground && konveyor-ci-playground
+```
+
+### Prepare environment
+
+```
+$ make init # populated "vendor" directory with required tools
+
+$ #TODO: make setup # start minikube&tackle using David's scripts
+```
+
+### Run tests
+
+```
+$ make test-e2e
+```
+
+### Check results
+
+See console output first. More details about tests execution and results are stored in files in ```output``` directory and ```venom.log``` file.
+
 
 ## Notes
 
