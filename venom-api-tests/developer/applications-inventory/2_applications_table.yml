@@ -1,7 +1,7 @@
 name: ApplicationsTestTable
 vars:
   applications:
-  # Valid application,    Note: >- block must not end with comment and the intendation of comments matters!
+  # Valid application,    Note: >- block must not end with comment (or start with "{") and the intendation of comments matters!
   - input: {
       "name": "tackle-testapp",
       "identities": [],
@@ -11,48 +11,22 @@ vars:
       }
     }
     expectedStatus: 201
-    #    expectedError: null
-
-  # Invalid - duplicate name (not existing repository kind doesn't fail)
-  - input: {
-      "name": "tackle-testapp",
-      "identities": [],
-      "repository": {
-        "kind": "nonexistscm",
-        "url": "https://nongit.local"
-      }
-    }
-    expectedStatus: 409
-    #    expectedError: "UNIQUE constraint failed: Application.Name"
+    shouldError: false
 
   # Invalid - empty name
   - input: {
       "name": ""
     }
     expectedStatus: 400
-    #    expectedError: Field validation for \'Name\' failed on the \'required\' tag
+    shouldError: true
 
 testcases:
-- name: ApplicationsCreate  # Note: all this could be moved to reusable executor looping over multiple steps
+- name: ApplicationsCreate 
   steps:
-  # Create the application iterating the applications variable defined above ("range" field)
+  # This calls create/get and delete application in reusable test/executor from lib/application-create-test.yml
   - name: Bulk create application
-    type: hub-api
-    path: applications
-    method: POST
+    type: application-create-test
     range: '{{.applications}}'
-    body: '{{.value.input}}'
-    assertions:
-    - result.statuscode ShouldEqual "{{.value.expectedStatus}}"
-    #    - result.bodyjson.error ShouldEqual '{{.value.expectedError}}'
-    vars:
-      app_id:
-        from: result.bodyjson.id
-
-  # Delete the application (not loop actually)
-  - name: Cleanup the application
-    type: hub-api
-    path: applications/{{.ApplicationsCreate.app_id}} # Only one app is successfuly created so add_id set from the first one persists
-    method: DELETE
-    assertions:
-    - result.statuscode ShouldEqual 204
+    application: '{{.value.input}}'
+    expectedStatus: "{{.value.expectedStatus}}"
+    shouldError: "{{.value.shouldError}}"

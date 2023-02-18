@@ -1,24 +1,32 @@
 executor: application-create-test
 input:
-  input: {}
-  value: {}
-  shouldError: {}
+  application: {}
   expectedStatus: {}
+  shouldError: {}
 steps:
   # Create the application iterating the applications variable defined above
   - type: hub-api
     path: applications
     method: POST
-    body: '{{.value.input}}'
+    body: '{{.input.application}}'
     assertions:
-    - result.statuscode ShouldEqual "{{.value.expectedStatus}}"
-#    - result.bodyjson.name ShouldEqual tackle-testapp # "result.bodyjson" is a JSON-parsed response from API having the same attributes as an Application in this case
+    - result.statuscode ShouldEqual "{{.input.expectedStatus}}"
+    vars:
+      app_id:
+        from: result.bodyjson.id
 
-  # Retrieve the application
-#  - name: Get the application
-#    type: hub-api
-#    path: applications/{{.ApplicationCRUD.app_id}}
-#    assertions:
-#    - result.statuscode ShouldEqual 200
-#    - result.bodyjson.name ShouldEqual tackle-testapp
-#
+  # Retrieve the application to ensure it was or was not really created
+  - name: Get the application
+    type: hub-api
+    path: applications/{{.app_id}}
+    assertions:
+    - result.statuscode ShouldEqual "{{.input.shouldError | ternary 404 200}}"  # cover both cases
+
+  # Delete the application
+  - name: Cleanup the application
+    type: hub-api
+    path: applications/{{.app_id}}
+    method: DELETE
+    skip_if: "{{.input.shouldError}}" # only if should be created
+    assertions:
+    - result.statuscode ShouldEqual 204
