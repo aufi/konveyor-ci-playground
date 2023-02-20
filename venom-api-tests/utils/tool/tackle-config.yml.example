@@ -1,8 +1,0 @@
----
-# Default Tackle 2 endpoint and credentials
-url: http://192.168.39.105
-username: admin
-password: 
-
-# Export of Identitiy (credentials) password and key fields should be encrypted
-encryption_passphase: 
