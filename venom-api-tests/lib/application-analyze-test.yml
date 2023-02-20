@@ -1,0 +1,67 @@
+executor: application-analyze-test
+input:
+  app: {}
+  addon_name: {}
+  task_data: {}
+steps:
+  # Create the application
+  - type: hub-api
+    path: applications
+    method: POST
+    body: '{{.input.app}}'
+    assertions:
+    - result.statuscode ShouldEqual 201
+    vars:
+      app_id:
+        from: result.bodyjson.id
+      app_name:
+        from: result.bodyjson.name
+
+  # Retrieve the application to ensure it was or was not really created
+  - name: Get the application
+    type: hub-api
+    path: applications/{{.app_id}}
+    assertions:
+    - result.statuscode ShouldEqual 200
+
+  # Create tasks to run the analysis
+  - type: hub-api
+    path: tasks
+    method: POST
+    body: |-
+      {
+        "name": "Test",
+        "locator": "app.{{.app_id}}.test",
+        "application": {
+          "id": {{.app_id}},
+          "name": "{{.app_name}}"
+        },
+        "addon": "{{.input.addon_name}}",
+        "data": '{{.input.task_data}}'
+      }
+    assertions:
+    - result.statuscode ShouldEqual 201
+    - result.bodyjson.status ShouldEqual "Ready"
+    vars:
+      task_id:
+        from: result.bodyjson.id
+
+  # Get the task result (wait for it)
+  - name: Check the task to be completed
+    type: hub-api
+    path: tasks/{{.task_id}}
+    assertions:
+    - result.statuscode ShouldEqual 200
+    - result.bodyjson.status ShouldEqual "Succeeded"
+    retry: 20
+    delay: 2
+    skip: true
+
+  # Delete the application
+  - name: Cleanup the application
+    type: hub-api
+    path: applications/{{.app_id}}
+    method: DELETE
+    assertions:
+    - result.statuscode ShouldEqual 204
+    skip: true

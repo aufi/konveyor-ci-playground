@@ -1,0 +1,44 @@
+name: ApplicationsAnalyzeTest
+vars:
+  applications:
+  - app: {
+      "name": "book-server",
+      "repository": {
+        "kind": "git",
+        "url": "https://github.com/ibraginsky/book-server"
+      }
+    }
+    addon_name: windup
+    task_data: {
+      "app_name": "book-server",
+      "targets": [
+        "cloud-readiness"
+      ],
+      "story_points": 5
+    }
+  #- app: {
+  #    "name": "tackle-testapp",
+  #    "identities": [],
+  #    "repository": {
+  #      "kind": "git",
+  #      "url": "https://github.com/konveyor/tackle-testapp"
+  #    }
+  #  }
+  #  addon_name: windup
+  #  task_data: {
+  #    "app_name": "tackle-testapp",
+  #    "targets": [
+  #      "cloud-readiness"
+  #    ],
+  #    "story_points": 1
+  #  }
+
+testcases:
+- name: ApplicationsAnalysis 
+  steps:
+  - name: Bulk application analysis
+    type: application-analyze-test
+    range: '{{.applications}}'
+    app: '{{.value.app}}'
+    task_data: "{{.value.task_data}}"
+    addon_name: "{{.value.addon_name}}"
