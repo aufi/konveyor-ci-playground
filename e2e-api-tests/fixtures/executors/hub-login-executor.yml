@@ -1,17 +1,17 @@
-#name: Login
-#testcases:
-#- name: auth
-#  steps:
-#  - type: http
-#    method: POST
-#    url: "{{.url}}/hub/auth/login"
-#    body: "{\"login\": {\"user\": \"{{.user}}\", \"password\": \"{{.password}}\"}}"
-#    headers:
-#      Content-Type: application/json
-#    info:
-#    - "Auth Token response: {{.result.body}}"
-#    assertions:
-#    - result.statuscode ShouldEqual 201
-#    vars:
-#      token:
-#        from: result.body
+executor: hub-login
+input:
+  user: admin
+  password: ""
+steps:
+- type: http
+  method: POST
+  url: "{{.url}}/hub/auth/login"
+  body: "{\"login\": {\"user\": \"{{.user}}\", \"password\": \"{{.password}}\"}}"
+  headers:
+    Content-Type: application/json
+  info:
+  - "Auth Token response: {{.result.body}}"
+  assertions:
+  - result.statuscode ShouldEqual 201
+output:
+  token: "{{.result.body}}"

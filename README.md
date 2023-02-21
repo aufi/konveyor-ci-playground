@@ -3,28 +3,34 @@ Playground for upstream CI experiments.
 
 ## Current CI status
 
-```TBD Green/Red for e2e and maybe also component's own results```
+```TBD nightly Green/Red for e2e and maybe also component's own results```
 
 ## Test suite execution
 
 ### Clone this repo
 
 ```
-git clone https://github.com/aufi/konveyor-ci-playground && konveyor-ci-playground
+git clone https://github.com/aufi/konveyor-ci-playground && cd konveyor-ci-playground
 ```
 
 ### Prepare environment
 
 ```
-$ make init # populated "e2e-api-tests/vendor" directory with required tools
+$ make init # populate "e2e-api-tests/vendor" directory with required tools
 
-$ #TODO: make setup # start minikube&tackle using David's scripts
+$ make setup # start minikube&tackle using David's scripts
 ```
 
 ### Run tests
 
 ```
 $ make test-e2e
+```
+
+## All-in-one to by executed by automation
+
+```
+$ make ci
 ```
 
 ### Check results
