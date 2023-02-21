@@ -10,7 +10,7 @@ steps:
     TEST_ROOT=${wd%"$fp"}
 
     # Prepare dump directory
-    DATA_DIR=${TEST_ROOT}/fixture-dumps/{{.input.title}}
+    DATA_DIR=${TEST_ROOT}fixtures/dumps/{{.input.title}}
     mkdir -p ${DATA_DIR}
 
     # Create the dump

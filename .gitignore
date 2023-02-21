@@ -1,3 +1,3 @@
-venom-api-tests/output/
+e2e-api-tests/output/
 venom*.log
-venom-api-tests/vendor
+e2e-api-tests/vendor

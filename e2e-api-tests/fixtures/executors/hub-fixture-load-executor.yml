@@ -8,7 +8,7 @@ steps:
     wd={{.venom.testsuite.workdir}}
     fp={{.venom.testsuite.filepath | dirname }}
     TEST_ROOT=${wd%"$fp"}
-    DATA_DIR=${TEST_ROOT}fixture-dumps/{{.input.title}}
+    DATA_DIR=${TEST_ROOT}fixtures/dumps/{{.input.title}}
     echo "$DATA_DIR"
 
     # Check datadir exists

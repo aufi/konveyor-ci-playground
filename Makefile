@@ -1,4 +1,4 @@
-TESTS_ROOT ?= ./venom-api-tests
+TESTS_ROOT ?= ./e2e-api-tests
 VENDOR_DIR ?= ${TESTS_ROOT}/vendor
 ARCH ?= amd64
 

@@ -1,5 +1,9 @@
 # konveyor-ci-playground
-Playground for upstream CI experiments to understand it as much as possible before building it.
+Playground for upstream CI experiments.
+
+## Current CI status
+
+```TBD Green/Red for e2e and maybe also component's own results```
 
 ## Test suite execution
 
@@ -12,7 +16,7 @@ git clone https://github.com/aufi/konveyor-ci-playground && konveyor-ci-playgrou
 ### Prepare environment
 
 ```
-$ make init # populated "vendor" directory with required tools
+$ make init # populated "e2e-api-tests/vendor" directory with required tools
 
 $ #TODO: make setup # start minikube&tackle using David's scripts
 ```
@@ -25,7 +29,7 @@ $ make test-e2e
 
 ### Check results
 
-See console output first. More details about tests execution and results are stored in files in ```output``` directory and ```venom.log``` file.
+See console output first. More details about tests execution and results are stored in files in ```e2e-api-tests/output``` directory and ```venom.log``` file.
 
 
 ## Notes
