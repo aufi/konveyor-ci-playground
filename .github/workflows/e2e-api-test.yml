@@ -2,7 +2,11 @@ name: E2E API Test
 
 on:
   schedule:
-    - cron: '10 19 * * *' # Every 6 hours
+    - cron: '1 0,6,12,18 * * *' # Regulary every 6 hours
+  push:
+    branches: [ "main" ]  # After CI code update
+    paths-ignore:
+      - '**.md'
 
 jobs:
   test-e2e:
