@@ -1,13 +1,17 @@
 # konveyor-ci-playground
 Playground for upstream CI experiments.
 
-## Current CI status
+## CI status
 
 [![End-To-End API Test](https://github.com/aufi/konveyor-ci-playground/actions/workflows/e2e-api-test.yml/badge.svg?branch=main)](https://github.com/aufi/konveyor-ci-playground/actions/workflows/e2e-api-test.yml)
 
-```TBD nightly Green/Red for e2e and maybe also component's own results```
+### Components status
 
-## Test suite execution
+[![Test Windup Addon](https://github.com/konveyor/tackle2-addon-windup/actions/workflows/test-windup.yml/badge.svg?branch=main)](https://github.com/konveyor/tackle2-addon-windup/actions/workflows/test-windup.yml)
+
+Add more components with their unit/integration tests execution status.
+
+## Local test suite execution
 
 ### Clone this repo
 
@@ -20,7 +24,7 @@ git clone https://github.com/aufi/konveyor-ci-playground && cd konveyor-ci-playg
 ```
 $ make init # populate "e2e-api-tests/vendor" directory with required tools
 
-$ make setup # start minikube&tackle using David's scripts
+$ make setup # start minikube&tackle using David's scripts - local env only
 ```
 
 ### Run tests
@@ -29,46 +33,6 @@ $ make setup # start minikube&tackle using David's scripts
 $ make test-e2e
 ```
 
-## All-in-one to be executed by automation
-
-```
-$ make ci
-```
-
 ### Check results
 
 See console output first. More details about tests execution and results are stored in files in ```e2e-api-tests/output``` directory and ```venom.log``` file.
-
-
-## Notes
-
-```
-[maufart@nb konveyor-ci-playground]$ cd venom-api-tests/
-[maufart@nb venom-api-tests]$ venom run developer/applications-inventory/applications.yml 
-          [trac] writing output/venom.0.log
- • Applications (developer/applications-inventory/applications.yml)
-        • ApplicationCRUD
-                • Create an application PASS
-                • Get the application PASS
-                • Update the application PASS
-                • Get the updated application PASS
-                • Cleanup the application PASS
-                  [info] Got app_id {{.app_id}}
-                  [info] Querying POST applications with body: { "name": "tackle-testapp", "identities": [], "repository": { "kind": "git", "url": "https://github.com/konveyor/tackle-testapp" } } (lib/hub-api-executor.yml:18)
-                  [info] Got response 201: {"id":1,"createUser":"admin.noauth","updateUser":"","createTime":"2023-02-15T16:13:53.67224492Z","name":"tackle-testapp","description":"","bucket":"/buckets/a8de4719-573f-4af3-95fc-8d55ac86372f","repository":{"kind":"git","url":"https://github.com/konveyor/tackle-testapp","branch":"","tag":"","path":""},"binary":"","facts":{},"review":null,"comments":"","identities":[],"tags":null,"businessService":null} (lib/hub-api-executor.yml:20)
-                  [info] Querying GET applications/1 with body: {} (lib/hub-api-executor.yml:18)
-                  [info] Got response 200: {"id":1,"createUser":"admin.noauth","updateUser":"","createTime":"2023-02-15T16:13:53.67224492Z","name":"tackle-testapp","description":"","bucket":"/buckets/a8de4719-573f-4af3-95fc-8d55ac86372f","repository":{"kind":"git","url":"https://github.com/konveyor/tackle-testapp","branch":"","tag":"","path":""},"binary":"","facts":{},"review":null,"comments":"","identities":[],"tags":null,"businessService":null} (lib/hub-api-executor.yml:20)
-                  [info] Querying PUT applications/1 with body: {"name": "tackle-testapp-updated"} (lib/hub-api-executor.yml:18)
-                  [info] Got response 204:  (lib/hub-api-executor.yml:20)
-                  [info] Querying GET applications/1 with body: {} (lib/hub-api-executor.yml:18)
-                  [info] Got response 200: {"id":1,"createUser":"admin.noauth","updateUser":"admin.noauth","createTime":"2023-02-15T16:13:53.67224492Z","name":"tackle-testapp-updated","description":"","bucket":"/buckets/a8de4719-573f-4af3-95fc-8d55ac86372f","repository":null,"binary":"","facts":{},"review":null,"comments":"","identities":[],"tags":null,"businessService":null} (lib/hub-api-executor.yml:20)
-                  [info] Querying DELETE applications/1 with body: {} (lib/hub-api-executor.yml:18)
-                  [info] Got response 204:  (lib/hub-api-executor.yml:20)
-                  [trac] writing output/applications.ApplicationCRUD.step.0.0.dump.json
-                  [trac] writing output/applications.ApplicationCRUD.step.1.0.dump.json
-                  [trac] writing output/applications.ApplicationCRUD.step.2.0.dump.json
-                  [trac] writing output/applications.ApplicationCRUD.step.3.0.dump.json
-                  [trac] writing output/applications.ApplicationCRUD.step.4.0.dump.json
-Writing file output/test_results_developer_applications-inventory_applications.json
-final status: PASS
-```

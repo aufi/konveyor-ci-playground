@@ -12,6 +12,7 @@ init:
 	curl https://raw.githubusercontent.com/konveyor/tackle2-operator/main/hack/install-tackle.sh -Lo ${VENDOR_DIR}/install-tackle.sh && chmod +x ${VENDOR_DIR}/install-tackle.sh
 
 # Setup local minikube with tackle - work in progress (TODO: enable auth)
+# This is for local setup, CI uses shared github actions
 setup:
 	${VENDOR_DIR}/start-minikube.sh && \
 	${VENDOR_DIR}/install-tackle.sh
@@ -22,8 +23,5 @@ clean:
 
 # Execute end-to-end testsuite
 test-e2e:
-	echo -e "url: ${MINIKUBE_IP}\nusername: \"admin\"\npassword: \"\"\nencryption_passphase: \"ci-dummy-passphase\"\n" > ${TESTS_ROOT}/vendor/tackle-config.yml
+	echo -e "url: http://${MINIKUBE_IP}\nusername: \"admin\"\npassword: \"\"\nencryption_passphase: \"ci-dummy-passphase\"\n" > ${TESTS_ROOT}/vendor/tackle-config.yml
 	cd ${TESTS_ROOT} && VENOM_VAR_url=http://${MINIKUBE_IP} ./vendor/venom run developer/**/*.yml administrator/**/*.yml
-
-# Task that should be executed in automated CI environment (on clean system with minikube command present)
-ci: init setup test-e2e
