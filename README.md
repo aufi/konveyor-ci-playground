@@ -27,7 +27,7 @@ $ make setup # start minikube&tackle using David's scripts
 $ make test-e2e
 ```
 
-## All-in-one to by executed by automation
+## All-in-one to be executed by automation
 
 ```
 $ make ci
