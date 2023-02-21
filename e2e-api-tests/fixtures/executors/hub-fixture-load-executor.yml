@@ -4,6 +4,7 @@ input:
 steps:
 - type: exec
   script: |-
+    set -x
     # Crazy getting root dir to find path to vendor independent on the test file path
     wd={{.venom.testsuite.workdir}}
     fp={{.venom.testsuite.filepath | dirname }}
