@@ -3,6 +3,8 @@ Playground for upstream CI experiments.
 
 ## Current CI status
 
+[![End-To-End API Test](https://github.com/aufi/konveyor-ci-playground/actions/workflows/e2e-api-test.yml/badge.svg?branch=main)](https://github.com/aufi/konveyor-ci-playground/actions/workflows/e2e-api-test.yml)
+
 ```TBD nightly Green/Red for e2e and maybe also component's own results```
 
 ## Test suite execution
