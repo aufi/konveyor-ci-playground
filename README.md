@@ -27,10 +27,16 @@ $ make init # populate "e2e-api-tests/vendor" directory with required tools
 $ make setup # start minikube&tackle using David's scripts - local env only
 ```
 
-### Run tests
+### Run test suite
 
 ```
 $ make test-e2e
+```
+
+Run test manually example:
+
+```
+$ cd e2e-api-tests && venom run developer/applications-inventory/4_applications_analysis.yml
 ```
 
 ### Check results
