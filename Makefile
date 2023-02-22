@@ -24,5 +24,8 @@ clean:
 
 # Execute end-to-end testsuite
 test-e2e:
-	echo -e "url: http://${MINIKUBE_IP}\nusername: \"admin\"\npassword: \"\"\nencryption_passphase: \"ci-dummy-passphase\"\n" > ${TESTS_ROOT}/vendor/tackle-config.yml
+	echo "url: http://${MINIKUBE_IP}" > ${TESTS_ROOT}/vendor/tackle-config.yml
+	echo "username: \"admin\"" >> ${TESTS_ROOT}/vendor/tackle-config.yml
+	echo "password: \"\"" >> ${TESTS_ROOT}/vendor/tackle-config.yml
+	echo "encryption_passphase: \"ci-dummy-passphase\"" >> ${TESTS_ROOT}/vendor/tackle-config.yml
 	cd ${TESTS_ROOT} && VENOM_VAR_url=http://${MINIKUBE_IP} ./vendor/venom run developer/**/*.yml administrator/**/*.yml
