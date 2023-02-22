@@ -46,15 +46,24 @@ steps:
       task_id:
         from: result.bodyjson.id
 
-  # Get the task result (wait for it), TODO: wait if ready or running, for failed continue immediately
+  # Wait until task finishes (5 minutes timeout)
   - name: Check the task to be completed
+    type: hub-api
+    path: tasks/{{.task_id}}
+    assertions:
+    - result.bodyjson.state ShouldNotEqual "Ready"
+    - result.bodyjson.state ShouldNotEqual "Pending"
+    - result.bodyjson.state ShouldNotEqual "Running"
+    retry: 60
+    delay: 5
+
+  # Get the task result
+  - name: Check the task result
     type: hub-api
     path: tasks/{{.task_id}}
     assertions:
     - result.statuscode ShouldEqual 200
     - result.bodyjson.state ShouldEqual "Succeeded"
-    retry: 30
-    delay: 5
 
   # TODO: Check report files?
 
