@@ -65,4 +65,4 @@ Not so nice things
 
 Venom docs on concepts and usage: https://github.com/ovh/venom#readme
 
-Relevant information comes also from closed issues on their repo - people asking things that they didn't understood how Venom solves (was helpful for me).
+Relevant information comes also from [closed issues](https://github.com/ovh/venom/issues?q=is%3Aissue+is%3Aclosed) on their repo - people asking things that they didn't understood how Venom solves (was helpful for me).
