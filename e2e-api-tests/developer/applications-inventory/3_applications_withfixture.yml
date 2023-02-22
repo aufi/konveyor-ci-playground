@@ -2,28 +2,24 @@ name: ApplicationsWithFixture
 testcases:
 - name: ApplicationFromDump
   steps:
-  #- name: Store ~original dump of hub data
-  #  type: hub-fixture-store
-  #  title: clean
+  # Dump API data  before executing this test case
+  - name: Store ~original dump of hub data
+    type: hub-fixture-store
+    title: temp-clean
 
-  # Execute test
-  - name: Create sample application
+ # Load test data dump for this test case (sample-application)
+  - name: Load fixture for this test
+    type: hub-fixture-load
+    title: sample-application
+
+  # Execute the test
+  - name: Check the sample application
     type: hub-api
-    path: applications
-    method: POST
-    body: {
-      "name": "tackle-testapp",
-      "identities": [],
-      "repository": {
-        "kind": "git",
-        "url": "https://github.com/konveyor/tackle-testapp"
-      }
-    }
+    path: applications/1
+    assertions:
+    - result.bodyjson.name ShouldEqual tackle-testapp
 
-  #- name: Store Tackle objects as a test fixture
-  #  type: hub-fixture-store
-  #  title: sample-application
-
+  # Reload the API data with pre-this test case dump
   - name: Load fixture
     type: hub-fixture-load
-    title: clean
+    title: temp-clean

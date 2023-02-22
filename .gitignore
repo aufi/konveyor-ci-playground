@@ -1,3 +1,4 @@
 e2e-api-tests/output/
 venom*.log
 e2e-api-tests/vendor
+e2e-api-tests/fixtures/dumps/temp-*

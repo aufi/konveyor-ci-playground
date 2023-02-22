@@ -14,8 +14,6 @@ steps:
     # Check datadir exists
     [ ! -d "$DATA_DIR" ] && echo "Data directory for fixture does not exist." && exit 1
 
-    cat ${TEST_ROOT}vendor/tackle-config.yml
-
     # Clean Hub
     ${TEST_ROOT}vendor/tackle clean-all -n -c ${TEST_ROOT}vendor/tackle-config.yml
 
@@ -23,5 +21,3 @@ steps:
     ${TEST_ROOT}vendor/tackle import -n -d ${DATA_DIR} -c ${TEST_ROOT}vendor/tackle-config.yml
   info:
   - "Command finished with {{.result.code}} STD: {{.result.systemout}}, ERR: {{.result.systemerr}}."
-  assertions:
-  - result.code ShouldBeBetweenOrEqual 0 255
