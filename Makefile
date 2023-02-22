@@ -8,7 +8,7 @@ init:
 	mkdir -p ${VENDOR_DIR}
 	curl https://github.com/ovh/venom/releases/download/v1.1.0/venom.linux-${ARCH} -Lo ${VENDOR_DIR}/venom && chmod +x ${VENDOR_DIR}/venom
 	curl https://raw.githubusercontent.com/konveyor/tackle2-hub/main/hack/tool/tackle -Lo ${VENDOR_DIR}/tackle && chmod +x ${VENDOR_DIR}/tackle
-	python3 -m pip install pyyaml pycryptodome
+	python3 -m pip install pyyaml pycryptodome requests
 
 # Setup local minikube with tackle - work in progress (TODO: enable auth)
 # This is for local setup, CI uses shared github actions
