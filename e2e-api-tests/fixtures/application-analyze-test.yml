@@ -28,34 +28,35 @@ steps:
   - type: hub-api
     path: tasks
     method: POST
-    body: |-
-      {
+    body: '{
         "name": "Test",
+        "state": "Ready",
         "locator": "app.{{.app_id}}.test",
         "application": {
           "id": {{.app_id}},
           "name": "{{.app_name}}"
         },
         "addon": "{{.input.addon_name}}",
-        "data": '{{.input.task_data}}'
-      }
+        "data": {{.input.task_data}}
+      }'
     assertions:
     - result.statuscode ShouldEqual 201
-    - result.bodyjson.status ShouldEqual "Ready"
+    - result.bodyjson.state ShouldEqual "Ready"
     vars:
       task_id:
         from: result.bodyjson.id
 
-  # Get the task result (wait for it)
+  # Get the task result (wait for it), TODO: wait if ready or running, for failed continue immediately
   - name: Check the task to be completed
     type: hub-api
     path: tasks/{{.task_id}}
     assertions:
     - result.statuscode ShouldEqual 200
-    - result.bodyjson.status ShouldEqual "Succeeded"
-    retry: 20
-    delay: 2
-    skip: true
+    - result.bodyjson.state ShouldEqual "Succeeded"
+    retry: 30
+    delay: 5
+
+  # TODO: Check report files?
 
   # Delete the application
   - name: Cleanup the application
@@ -64,4 +65,3 @@ steps:
     method: DELETE
     assertions:
     - result.statuscode ShouldEqual 204
-    skip: true

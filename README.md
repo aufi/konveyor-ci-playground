@@ -57,6 +57,7 @@ Nice things
 - Venom is designed to be integration testing tool, so brings concepts like split test definition, execution and is easily extendable.
 - The tool is written in golang and allows create own executors natively in golang (this might be needed for rather complex or somehow very uncommon tests, is working well even without it).
 - Compromise on sharing zero code with tested tool, but providing reasonably understandable interface working with it (a thin wrapper on tested API).
+- Tackle CLI integration as a custom executor allows load/store fixture dumps quickly (within features of export/import, e.g. no Tasks).
 
 Not so nice things
 - YAML doesn't look as nice as golang source code (at least for me as developer).

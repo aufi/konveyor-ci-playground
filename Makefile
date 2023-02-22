@@ -28,4 +28,4 @@ test-e2e:
 	echo "username: \"admin\"" >> ${TESTS_ROOT}/vendor/tackle-config.yml
 	echo "password: \"\"" >> ${TESTS_ROOT}/vendor/tackle-config.yml
 	echo "encryption_passphase: \"ci-dummy-passphase\"" >> ${TESTS_ROOT}/vendor/tackle-config.yml
-	cd ${TESTS_ROOT} && VENOM_VAR_url=http://${MINIKUBE_IP} ./vendor/venom run developer/**/*.yml administrator/**/*.yml
+	cd ${TESTS_ROOT} && ./vendor/venom run developer/**/*.yml administrator/**/*.yml

@@ -1,11 +1,6 @@
-#variables: 
-  #- url=http://127.0.0.1:8888
-  #- url=http://192.168.122.3
-  #- user=admin
-  #- password=
-#variables_files:
-#  - my_var_file.yaml
-#stop_on_failure: false
+variables_files:
+  - vendor/tackle-config.yml
+stop_on_failure: false
 format: json
 output_dir: output
 lib_dir: fixtures
