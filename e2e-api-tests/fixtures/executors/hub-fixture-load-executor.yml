@@ -16,6 +16,8 @@ steps:
     # Check datadir exists
     [ ! -d "$DATA_DIR" ] && echo "Data directory for fixture does not exist." && exit 1
 
+    cat ${TEST_ROOT}vendor/tackle-config.yml
+
     # Clean Hub
     ${TEST_ROOT}vendor/tackle clean-all -n -c ${TEST_ROOT}vendor/tackle-config.yml
 
