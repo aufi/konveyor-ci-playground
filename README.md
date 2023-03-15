@@ -1,4 +1,10 @@
-# konveyor-ci-playground
+# Archived
+The repo was archived. Work continues on:
+- https://github.com/konveyor/enhancements/pull/103
+- https://github.com/konveyor/tackle2-hub/issues/262
+- https://github.com/konveyor/go-konveyor-tests
+
+## konveyor-ci-playground
 Playground for upstream CI experiments.
 
 ## CI status
